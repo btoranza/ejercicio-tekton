@@ -2,14 +2,16 @@
   <section class="card pa-50 card-container">
     <div class="credit-card-box">
       <div class="wave">
-
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path fill="#1ba94c" fill-opacity="1"
-                d="M0,224L48,208C96,192,192,160,288,144C384,128,480,128,576,149.3C672,171,768,213,864,229.3C960,245,1056,235,1152,192C1248,149,1344,75,1392,37.3L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          <path
+            fill="#1ba94c"
+            fill-opacity="1"
+            d="M0,224L48,208C96,192,192,160,288,144C384,128,480,128,576,149.3C672,171,768,213,864,229.3C960,245,1056,235,1152,192C1248,149,1344,75,1392,37.3L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
         </svg>
       </div>
       <div class="front">
-        <img src="assets/logo.png" class="logo">
+        <img src="assets/logo.png" class="logo" />
         <div class="number"></div>
         <div class="card-holder">
           <label class="card-number">{{ cardNumber }}</label>
@@ -29,13 +31,16 @@
           autocomplete="off"
           formControlName="number"
           class="white large outlined"
-          [class]="{'error': true}"
+          [class]="{ error: true }"
           placeholder="Card Number"
+          maxlength="16"
         />
-        <p class="error-text form-hint" data-test-id="number-input-error">
-            <span>
-
-            </span>
+        <p
+          class="error-text form-hint"
+          data-test-id="number-input-error"
+          *ngIf="toggleErrorMessage(cardForm.get('number'))"
+        >
+          <span> Invalid card number </span>
         </p>
       </label>
       <label class="mt-20">
@@ -45,14 +50,16 @@
           autocomplete="off"
           data-test-id="name-input"
           class="white large outlined"
-          [class]="{'error': true}"
+          [class]="{ error: true }"
           placeholder="Name on card"
+          maxlength="50"
         />
-        <p data-test-id="name-input-error"
-            class="error-text form-hint">
-              <span>
-
-              </span>
+        <p
+          data-test-id="name-input-error"
+          class="error-text form-hint"
+          *ngIf="toggleErrorMessage(cardForm.get('name'))"
+        >
+          <span>Invalid cardholder name </span>
         </p>
       </label>
       <div class="layout-row card-info mt-20">
@@ -65,33 +72,36 @@
                 data-test-id="month-input"
                 autocomplete="off"
                 class="white large outlined"
-                [class]="{'error': true}"
+                [class]="{ error: true }"
                 placeholder="##"
+                maxlength="2"
               />
               <p class="form-hint">Expiry Month</p>
-              <p data-test-id="month-input-error"
-                 class="error-text form-hint">
-                <span>
-
-                </span>
+              <p
+                data-test-id="month-input-error"
+                class="error-text form-hint"
+                *ngIf="toggleErrorMessage(cardForm.get('month'))"
+              >
+                <span> Invalid month</span>
               </p>
             </label>
             <label class="expiry-year ml-8">
               <input
-                type="number"
+                type="text"
                 formControlName="year"
                 data-test-id="year-input"
                 autocomplete="off"
                 class="white large outlined"
-                [class]="{'error': true}"
+                [class]="{ error: true }"
                 placeholder="####"
               />
               <p class="form-hint">Expiry Year</p>
-              <p data-test-id="year-input-error"
-                 class="error-text form-hint">
-                <span>
-
-                </span>
+              <p
+                data-test-id="year-input-error"
+                class="error-text form-hint"
+                *ngIf="toggleErrorMessage(cardForm.get('year'))"
+              >
+                <span> Invalid year</span>
               </p>
             </label>
           </div>
@@ -99,26 +109,32 @@
 
         <label class="cvv-number">
           <input
-            type="number"
+            type="text"
             formControlName="cvv"
             autocomplete="off"
             data-test-id="cvv-input"
             class="white large outlined"
-            [class]="{'error': true}"
+            [class]="{ error: true }"
             placeholder="###"
+            pattern="[0-9]*"
           />
           <p class="form-hint">CVV/CVC</p>
-          <p data-test-id="cvv-input-error"
-             class="error-text form-hint">
-                <span>
-
-                </span>
+          <p
+            data-test-id="cvv-input-error"
+            class="error-text form-hint"
+            *ngIf="toggleErrorMessage(cardForm.get('cvv'))"
+          >
+            <span>Invalid CVV/CVC </span>
           </p>
         </label>
       </div>
 
-
-      <button class="mt-50" type="submit" data-test-id="submit-button">
+      <button
+        class="mt-50"
+        type="submit"
+        data-test-id="submit-button"
+        [disabled]="cardForm.invalid"
+      >
         Submit
       </button>
     </form>
