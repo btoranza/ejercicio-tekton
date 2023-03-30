@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,24 +7,17 @@ import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PaymentValidation
-  ],
+  declarations: [AppComponent, PaymentValidation],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     RouterTestingModule,
-    RouterModule.forRoot([
-      { path:'', component: PaymentValidation }
-    ])
+    RouterModule.forRoot([{ path: '', component: PaymentValidation }]),
   ],
-  exports: [
-    RouterModule
-  ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent],
-  schemas : [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

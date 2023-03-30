@@ -115,6 +115,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "paymentValidation"
+    }
+  },
+  "defaultProject": "paymentValidation",
+  "cli": {
+    "analytics": false
+  }
 }
